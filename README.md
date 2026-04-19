@@ -1,4 +1,4 @@
-# zsh-nvm [![Build Status](https://travis-ci.org/lukechilds/zsh-nvm.svg?branch=master)](https://travis-ci.org/lukechilds/zsh-nvm)
+# zsh-nvm [![Build Status](https://github.com/gadflysu/zsh-nvm/actions/workflows/test.yml/badge.svg)](https://github.com/gadflysu/zsh-nvm/actions/workflows/test.yml)
 
 > Zsh plugin for installing, updating and loading `nvm`
 
