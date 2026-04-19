@@ -17,10 +17,10 @@ export NVM_LAZY_LOAD=true
 yarn() { echo yarn }
 
 # Check yarn is a placeholder function
-[[ $(which yarn) != *"_zsh_nvm_load"* ]] || die "yarn should be a placeholder function"
+[[ $(which yarn) != *"__zsh_nvm_load"* ]] || die "yarn should be a placeholder function"
 
 # Load zsh-nvm
 load_zsh_nvm
 
 # Check yarn is a lazy load function
-[[ $(which yarn) == *"_zsh_nvm_load"* ]] || die "yarn should be a lazy load function"
+[[ $(which yarn) == *"__zsh_nvm_load"* ]] || die "yarn should be a lazy load function"
