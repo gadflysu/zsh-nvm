@@ -2,7 +2,7 @@ ZSH_NVM_DIR=${0:a:h}
 
 [[ -z "$NVM_DIR" ]] && export NVM_DIR="$HOME/.nvm"
 
-_zsh_nvm_rename_function() {
+__zsh_nvm_rename_function() {
   test -n "$(declare -f $1)" || return
   eval "${_/$1/$2}"
   unset -f $1
@@ -36,7 +36,7 @@ _zsh_nvm_global_binaries() {
   fi
 }
 
-_zsh_nvm_load() {
+__zsh_nvm_load() {
 
   # Source nvm (check if `nvm use` should be ran after load)
   if [[ "$NVM_NO_USE" == true ]]; then
@@ -46,7 +46,7 @@ _zsh_nvm_load() {
   fi
 
   # Rename main nvm function
-  _zsh_nvm_rename_function nvm _zsh_nvm_nvm
+  __zsh_nvm_rename_function nvm _zsh_nvm_nvm
 
   # Wrap nvm in our own function
   nvm() {
@@ -110,7 +110,7 @@ _zsh_nvm_lazy_load() {
     # When called, unset all lazy loaders, load nvm then run current command
     eval "$cmd(){
       unset -f $cmds > /dev/null 2>&1
-      _zsh_nvm_load
+      __zsh_nvm_load
       $cmd \"\$@\"
     }"
   done
@@ -138,7 +138,7 @@ _zsh_nvm_upgrade() {
     echo "Updating to $latest_version..."
     echo "$installed_version" > "$ZSH_NVM_DIR/previous_version"
     $(builtin cd "$NVM_DIR" && git fetch --quiet && git checkout "$latest_version")
-    _zsh_nvm_load
+    __zsh_nvm_load
   fi
 }
 
@@ -157,7 +157,7 @@ _zsh_nvm_revert() {
     echo "Installed version is $installed_version"
     echo "Reverting to $previous_version..."
     $(builtin cd "$NVM_DIR" && git checkout "$previous_version")
-    _zsh_nvm_load
+    __zsh_nvm_load
   else
     echo "No previous version found"
   fi
@@ -214,7 +214,7 @@ if [[ "$ZSH_NVM_NO_LOAD" != true ]]; then
   if [[ -f "$NVM_DIR/nvm.sh" ]]; then
 
     # Load it
-    [[ "$NVM_LAZY_LOAD" == true ]] && _zsh_nvm_lazy_load || _zsh_nvm_load
+    [[ "$NVM_LAZY_LOAD" == true ]] && _zsh_nvm_lazy_load || __zsh_nvm_load
 
     # Enable completion
     [[ "$NVM_COMPLETION" == true ]] && _zsh_nvm_completion
