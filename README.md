@@ -2,6 +2,13 @@
 
 > Zsh plugin for installing, updating and loading `nvm`
 
+## Fork Changes
+
+This is a fork of [lukechilds/zsh-nvm](https://github.com/lukechilds/zsh-nvm) with the following changes:
+
+- **Fix Claude Code compatibility**: Rename `_zsh_nvm_load` and `_zsh_nvm_rename_function` to double-underscore prefix (`__zsh_nvm_load`, `__zsh_nvm_rename_function`) so they survive Claude Code's shell snapshot serialization and lazy loading works correctly inside Claude Code's bash tool shells.
+- **CI**: Migrate from Travis CI (shut down) to GitHub Actions.
+
 [![GitHub Donate](https://badgen.net/badge/GitHub/Sponsor/D959A7?icon=github)](https://github.com/sponsors/lukechilds)
 [![Bitcoin Donate](https://badgen.net/badge/Bitcoin/Donate/F19537?icon=bitcoin)](https://lu.ke/tip/bitcoin)
 [![Lightning Donate](https://badgen.net/badge/Lightning/Donate/F6BC41?icon=bitcoin-lightning)](https://lu.ke/tip/lightning)
