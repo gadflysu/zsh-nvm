@@ -17,7 +17,9 @@ jobs:
 
       - name: Remove system node (macOS)
         if: runner.os == 'macOS'
-        run: brew uninstall node || true
+        run: |
+          brew uninstall --force node || true
+          sudo rm -rf "$(brew --prefix)/bin/node" "$(brew --prefix)/bin/npm" "$(brew --prefix)/bin/npx" || true
 
       - name: Remove system node (Linux)
         if: runner.os == 'Linux'
